@@ -1,6 +1,9 @@
-using ContractTrack.Controllers;
+using ContractTrack.Application.Services;
+using ContractTrack.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Add services to the container.
 
@@ -8,7 +11,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IProductService, ProductService>
+/*builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(8082);
+});*/
+
+builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 

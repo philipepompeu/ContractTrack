@@ -7,20 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Application\NewFolder\**" />
     <Compile Remove="Controllers\Application\**" />
+    <Content Remove="Application\NewFolder\**" />
     <Content Remove="Controllers\Application\**" />
+    <EmbeddedResource Remove="Application\NewFolder\**" />
     <EmbeddedResource Remove="Controllers\Application\**" />
+    <None Remove="Application\NewFolder\**" />
     <None Remove="Controllers\Application\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\DTOS\" />
-    <Folder Include="Application\Services\" />
-    <Folder Include="Domain\Entities\" />
     <Folder Include="Data\" />
   </ItemGroup>
 

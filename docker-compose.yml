@@ -1,0 +1,25 @@
+services:
+    postgres:
+        image: postgres:15
+        container_name: contracttrack-db
+        restart: always
+        environment:
+          POSTGRES_USER: contracttrack
+          POSTGRES_PASSWORD: contracttrack
+          POSTGRES_DB: contracttrack
+        volumes:
+          - postgres_data:/var/lib/postgresql/data
+        ports:
+          - "5433:5432"    
+    rabbitmq:
+        image: rabbitmq:3-management
+        container_name: contracttrack-rbmq
+        restart: always
+        environment:
+            RABBITMQ_DEFAULT_USER: guest
+            RABBITMQ_DEFAULT_PASS: guest
+        ports:
+            - "15666:15672" # UI Web do RabbitMQ      
+            - "5673:5672"
+volumes:
+  postgres_data:

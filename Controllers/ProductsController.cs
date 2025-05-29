@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ContractTrack.Application.DTOS;
+using ContractTrack.Application.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContractTrack.Controllers
@@ -13,7 +15,8 @@ namespace ContractTrack.Controllers
         public async Task<IActionResult> Create([FromBody] ProductCreateDto dto)
         {
             var result = await _service.CreateAsync(dto);
-            return CreatedAtAction(nameof(GetAll), new { id = result.Id }, result);
+
+            return CreatedAtAction(nameof(GetAll), null, result);
         }
 
         [HttpGet]
