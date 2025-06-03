@@ -1,5 +1,7 @@
 using ContractTrack.Application.Services;
 using ContractTrack.Data;
+using ContractTrack.Domain;
+using ContractTrack.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,7 @@ builder.Services.AddSwaggerGen();
 });*/
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddScoped<IRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();

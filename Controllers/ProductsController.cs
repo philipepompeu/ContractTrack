@@ -14,9 +14,9 @@ namespace ContractTrack.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] ProductCreateDto dto)
         {
-            var result = await _service.CreateAsync(dto);
+            var product = await _service.CreateAsync(dto);
 
-            return CreatedAtAction(nameof(GetAll), null, result);
+            return Ok(product);
         }
 
         [HttpGet]

@@ -36,7 +36,7 @@ namespace ContractTrack.Domain
 
         public Task SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return _context.SaveChangesAsync();
         }
 
         public void Update(Product entity)

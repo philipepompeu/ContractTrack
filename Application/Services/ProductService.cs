@@ -1,12 +1,13 @@
 ﻿using ContractTrack.Application.DTOS;
 using ContractTrack.Application.Services;
 using ContractTrack.Domain;
+using ContractTrack.Domain.Entities;
 
 public class ProductService : IProductService
 {
 
-    private readonly ProductRepository _productRepository;
-    public ProductService(ProductRepository repository)
+    private readonly IRepository<Product> _productRepository;
+    public ProductService(IRepository<Product> repository)
     {
         _productRepository = repository;
     }
@@ -17,5 +18,7 @@ public class ProductService : IProductService
 
         await _productRepository.AddAsync(product);
         await _productRepository.SaveChangesAsync();
+
+        return ProductMapper.ToProductViewDto(product);
     }
 }
